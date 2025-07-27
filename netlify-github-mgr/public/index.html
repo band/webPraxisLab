@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GitHub File Manager</title>
+</head>
+<body>
+    <h1>GitHub File Manager</h1>
+    
+    <div>
+        <h3>Get File</h3>
+        <input type="text" id="getPath" placeholder="path/to/file.txt">
+        <button onclick="getFile()">Get File</button>
+        <pre id="fileContent"></pre>
+    </div>
+
+    <div>
+        <h3>Update File</h3>
+        <input type="text" id="updatePath" placeholder="path/to/file.txt">
+        <textarea id="newContent" placeholder="File content"></textarea>
+        <input type="text" id="commitMessage" placeholder="Commit message">
+        <button onclick="updateFile()">Update File</button>
+    </div>
+
+    <script>
+        const API_BASE = window.location.origin + '/api';
+
+        async function getFile() {
+            const path = document.getElementById('getPath').value;
+            try {
+                const response = await fetch(`${API_BASE}/get-file?path=${path}`);
+                const data = await response.json();
+                document.getElementById('fileContent').textContent = JSON.stringify(data, null, 2);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        async function updateFile() {
+            const path = document.getElementById('updatePath').value;
+            const content = document.getElementById('newContent').value;
+            const message = document.getElementById('commitMessage').value;
+
+            try {
+                const response = await fetch(`${API_BASE}/update-file`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ path, content, message })
+                });
+                const data = await response.json();
+                alert('File updated successfully!');
+                console.log(data);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,17 +1,15 @@
 {
-  "name": "netlify-github-mgr",
+  "name": "my-github-manager",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "netlify dev",
+    "build": "echo 'Build complete'",
+    "deploy": "netlify deploy --prod"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
-    "@octokit/rest": "^22.0.0",
-    "dotenv": "^17.2.1"
+    "@octokit/rest": "^19.0.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.0"
   }
 }
