@@ -5,6 +5,7 @@ interface MetaResultProps {
         title: string;
         description: string;
         keywords: string;
+	filepath: string;
     } | null;
 }
 
@@ -19,6 +20,7 @@ const MetaResult: React.FC<MetaResultProps> = ({ metaData }) => {
             <p><strong>Title:</strong> {metaData.title}</p>
             <p><strong>Description:</strong> {metaData.description}</p>
             <p><strong>Keywords:</strong> {metaData.keywords}</p>
+	    <p><strong>filepath:</strong> {metaData.filepath}</p>
         </div>
     );
 };

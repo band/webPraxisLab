@@ -1,5 +1,4 @@
 const express = require('express');
-// const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 
 const app = express();
@@ -32,8 +31,9 @@ app.get('/meta', async (req, res) => {
         const title = $('title').text();
         const description = $('meta[name="description"]').attr('content') || '';
         const keywords = $('meta[name="keywords"]').attr('content') || '';
+        const filepath = $('meta[name="fs_path"]').attr('content') || '';
 
-        res.json({ title, description, keywords });
+        res.json({ title, description, keywords, filepath });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
